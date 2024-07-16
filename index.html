@@ -10,14 +10,14 @@
     <div id="ui"></div>
     <button id="fullscreen">Fullscreen</button>
     <ul>
-      <li><a href="?path=8ppoi/InvaderX/1.0.0/bundle.js">8ppoi/InvaderX/0.0.1/bundle.js</a></li>
-      <li><a href="?path=8ppoi/InvaderX/1.0.0/mod.js">8ppoi/InvaderX/0.0.1/mod.js</a></li>
+      <li><a href="?path=8ppoi/InvaderX/0.0.1/bundle.js">8ppoi/InvaderX/0.0.1/bundle.js</a></li>
+      <li><a href="?path=8ppoi/InvaderX/0.0.1/mod.js">8ppoi/InvaderX/0.0.1/mod.js</a></li>
     </ul>
     <script type="module">
       document.getElementById("fullscreen").onclick = () => {
         document.getElementById("ui").requestFullscreen();
       };
-      const path = new URL(location).searchParams.get("path") ?? "8ppoi/InvaderX/0.0.1/bundle.js";
+      const path = new URL(location).searchParams.get("path") ?? "8ppoi/InvaderX/0.0.1/mod.js";
       const deps = (await import(`./cartridges/${path.replace(/\/[^/]+\.js$/, "")}/deps.js`));
       const cartridge = (await import(`./cartridges/${path}`));
       deps.Console.setup(cartridge, deps);
