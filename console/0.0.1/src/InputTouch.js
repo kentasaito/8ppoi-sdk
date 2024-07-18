@@ -11,12 +11,12 @@ export class InputTouch {
     pad.style.fill = "hsl(0, 0%, 60%)";
     pad.style.width = "320px";
     pad.style.height = "160px";
-    document.getElementById("ui").append(pad);
+    document.getElementById("padContainer").append(pad);
     pad.append(this.renderShapes());
     const touchAreas = this.renderTouchAreas(config.pads[0]);
     pad.append(touchAreas);
     pad.append(this.renderDirection());
-    document.getElementById("ui").append(this.renderLabels());
+    document.getElementById("padContainer").append(this.renderLabels());
     pad.ontouchstart = (e) => this.onTouch(e);
     pad.ontouchmove = (e) => this.onTouch(e);
     pad.ontouchend = (e) => this.onRelease(e);
