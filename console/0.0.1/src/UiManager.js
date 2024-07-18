@@ -2,10 +2,10 @@ import { Console } from "./Console.js";
 
 export class UiManager {
   static setup(config) {
-    document.getElementById("ui").setAttribute("tabindex", "-1");
-    document.getElementById("ui").style.width = `${config.screen.width}px`;
-    document.getElementById("ui").style.height = `${config.screen.height}px`;
-    document.getElementById("ui").style.position = "relative";
+    document.getElementById("screenContainer").setAttribute("tabindex", "-1");
+    document.getElementById("screenContainer").style.width = `${config.screen.width}px`;
+    document.getElementById("screenContainer").style.height = `${config.screen.height}px`;
+    document.getElementById("screenContainer").style.position = "relative";
     const screen = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "svg",
@@ -39,8 +39,8 @@ export class UiManager {
     }
     style.textContent += "}";
     screen.append(style);
-    document.getElementById("ui").append(screen);
-    document.getElementById("ui").append(this.renderRun(config));
+    document.getElementById("screenContainer").append(screen);
+    document.getElementById("screenContainer").append(this.renderRun(config));
   }
 
   static renderRun(config) {
@@ -52,7 +52,7 @@ export class UiManager {
     run.id = "run";
     run.onclick = () => {
       run.remove();
-      document.getElementById("ui").focus();
+      document.getElementById("screenContainer").focus();
       Console.run();
     };
     run.style.verticalAlign = "top";

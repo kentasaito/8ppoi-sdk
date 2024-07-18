@@ -7,7 +7,7 @@
     <link rel="icon" href="data:image/svg+xml,">
   </head>
   <body style="margin: 20px;">
-    <div id="ui"></div>
+    <div id="screenContainer"></div>
     <div id="padContainer"></div>
     <button id="fullscreen">Fullscreen</button>
     <script type="module">
@@ -15,7 +15,7 @@
         document.getElementById("fullscreen").style.display = "none";
       }
       document.getElementById("fullscreen").onclick = () => {
-        document.getElementById("ui").requestFullscreen();
+        document.getElementById("screenContainer").requestFullscreen();
       };
       const path = new URL(location).searchParams.get("path");
       if (path) {

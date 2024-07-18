@@ -11,7 +11,7 @@ export class InputKey {
         };
       }
     });
-    document.getElementById("ui").onkeydown = (e) => {
+    document.getElementById("screenContainer").onkeydown = (e) => {
       config.pads.forEach((pad, padId) => {
         for (const buttonName in pad) {
           if (e.key === pad[buttonName].key) {
@@ -21,7 +21,7 @@ export class InputKey {
         }
       });
     };
-    document.getElementById("ui").onkeyup = (e) => {
+    document.getElementById("screenContainer").onkeyup = (e) => {
       config.pads.forEach((pad, padId) => {
         for (const buttonName in pad) {
           if (e.key === pad[buttonName].key) {
