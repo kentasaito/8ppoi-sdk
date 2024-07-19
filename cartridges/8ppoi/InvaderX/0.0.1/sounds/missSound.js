@@ -1,5 +1,12 @@
 export const missSound = [
   [
+    {
+      render: {
+        baseFrequency: 440,
+        noteNumberOffset: 0,
+        baseFrameCount: 128,
+      },
+    },
     [12, 16],
     [10, 16],
     [7, 16],
