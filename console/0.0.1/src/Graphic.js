@@ -11,7 +11,7 @@ export class Graphic {
     this.element.dataset.graphicName = graphicName;
     this.params = {};
     this.lines = [];
-    for (const y in typeof cells === "string" ? cells.split("\n") : cells) {
+    for (const y in Array.isArray(cells) ? cells : cells.toString().split("\n")) {
       this.lines[y] = new Proxy({}, {
         get: (_, x) => {
           return parseInt(
@@ -52,7 +52,7 @@ export class Graphic {
       x: {
         get: () => this.params.x,
         set: (value) => {
-          this.params.x = value;
+          this.params.x = Math.round(value);
           this.element.setAttribute(
             "transform",
             `translate(${this.params.x ?? 0} ${this.params.y ?? 0})`,
@@ -62,7 +62,7 @@ export class Graphic {
       y: {
         get: () => this.params.y,
         set: (value) => {
-          this.params.y = value;
+          this.params.y = Math.round(value);
           this.element.setAttribute(
             "transform",
             `translate(${this.params.x ?? 0} ${this.params.y ?? 0})`,
@@ -81,7 +81,7 @@ export class Graphic {
           this.element.innerHTML = "";
           let x = 0;
           let y = 0;
-          for (const c of value.split("")) {
+          for (const c of value.toString().split("")) {
             if (c === "\n") {
               x = 0;
               y++;
@@ -96,14 +96,14 @@ export class Graphic {
     this.x = 0;
     this.y = 0;
     this.paletteName = "defaultPalette";
-    if (typeof cells === "string") {
-      this.text = cells;
-    } else {
+    if (Array.isArray(cells)) {
       cells.forEach((line, y) => {
         line.forEach((sceneId, x) => {
           this.cells[y][x] = sceneId;
         });
       });
+    } else {
+      this.text = cells;
     }
   }
 }

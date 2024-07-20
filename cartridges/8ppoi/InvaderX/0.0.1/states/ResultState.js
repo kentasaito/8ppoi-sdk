@@ -4,7 +4,7 @@ export class ResultState {
   static onPushState(Console, params) {
     this.resultGraphic = Console.createGraphic(
       "fontGraphic",
-      "" + params.score,
+      params.score,
     );
     this.resultGraphic.x = 2;
     this.resultGraphic.y = 4;
