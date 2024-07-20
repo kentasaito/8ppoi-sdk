@@ -1,5 +1,5 @@
 export class IndexState {
-  static score;
+  static #score;
   static playerGraphic;
   static bulletGraphic;
   static targetGraphic;
@@ -25,11 +25,10 @@ export class IndexState {
   }
 
   static #reset(Console) {
-    this.score = 10;
+    this.#score = 10;
     this.#recreatePlayer(Console);
     Console.deleteGraphic(this, ["bulletGraphic"]);
     this.#recreateTarget(Console);
-    this.targetGraphic.x = 0;
   }
 
   static #recreatePlayer(Console) {
@@ -57,7 +56,7 @@ export class IndexState {
       if (this.targetGraphic.y === 12) {
         this.#miss(Console);
         return true;
-      } else if (Console.random() % 100 < this.score) {
+      } else if (Console.random() % 100 < this.#score) {
         this.targetGraphic.y++;
         this.#checkHit(Console);
       }
@@ -69,6 +68,7 @@ export class IndexState {
     Console.deleteGraphic(this, ["targetGraphic"]);
     this.targetGraphic = Console.createGraphic("targetGraphic");
     this.targetGraphic.paletteName = "targetPalette";
+    this.targetGraphic.x = 0;
     this.targetGraphic.y = 0;
   }
 
@@ -82,7 +82,7 @@ export class IndexState {
   }
 
   static #hit(Console) {
-    this.score++;
+    this.#score++;
     this.#recreateEffectSound(Console, "hitSound");
     Console.deleteGraphic(this, ["bulletGraphic"]);
     this.#recreateTarget(Console);
@@ -92,7 +92,7 @@ export class IndexState {
   static #miss(Console) {
     this.playerGraphic.cells[0][0] = 1;
     this.#recreateEffectSound(Console, "missSound");
-    Console.pushState("ResultState", { score: this.score });
+    Console.pushState("ResultState", { score: this.#score });
   }
 
   static #movePlayer(Console) {
