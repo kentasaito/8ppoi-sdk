@@ -19,7 +19,7 @@ export class IndexState {
     }
     this.#movePlayer(Console);
     this.#moveBullet(Console);
-    if (Console.pads[0].b.justPressed && !this.bulletGraphic) {
+    if (Console.pads[0].b.justPressed) {
       this.#shotBullet(Console);
     }
   }
@@ -85,13 +85,15 @@ export class IndexState {
   }
 
   static #shotBullet(Console) {
-    Console.deleteGraphic(this, ["bulletGraphic"]);
-    this.bulletGraphic = Console.createGraphic("bulletGraphic");
-    this.bulletGraphic.paletteName = "bulletPalette";
-    this.bulletGraphic.x = this.playerGraphic.x;
-    this.bulletGraphic.y = 12;
-    this.#recreateEffectSound(Console, "shotSound");
-    this.#checkHit(Console);
+    if (!this.bulletGraphic) {
+//      Console.deleteGraphic(this, ["bulletGraphic"]);
+      this.bulletGraphic = Console.createGraphic("bulletGraphic");
+      this.bulletGraphic.paletteName = "bulletPalette";
+      this.bulletGraphic.x = this.playerGraphic.x;
+      this.bulletGraphic.y = 12;
+      this.#recreateEffectSound(Console, "shotSound");
+      this.#checkHit(Console);
+    }
   }
 
   static #checkHit(Console) {
