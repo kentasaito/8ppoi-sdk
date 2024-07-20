@@ -37,31 +37,6 @@ export class IndexState {
     this.playerGraphic.paletteName = "playerPalette";
     this.playerGraphic.x = 0;
     this.playerGraphic.y = 12;
-    this.playerGraphic.cells[0][0] = 0;
-  }
-
-  static #moveBullet(Console) {
-    if (this.bulletGraphic) {
-      if (this.bulletGraphic.y === 0) {
-        Console.deleteGraphic(this, ["bulletGraphic"]);
-      } else {
-        this.bulletGraphic.y--;
-        this.#checkHit(Console);
-      }
-    }
-  }
-
-  static #moveTarget(Console) {
-    if (this.targetGraphic) {
-      if (this.targetGraphic.y === 12) {
-        this.#miss(Console);
-        return true;
-      } else if (Console.random() % 100 < this.#score) {
-        this.targetGraphic.y++;
-        this.#checkHit(Console);
-      }
-    }
-    return false;
   }
 
   static #recreateTarget(Console) {
@@ -72,21 +47,15 @@ export class IndexState {
     this.targetGraphic.y = 0;
   }
 
-  static #checkHit(Console) {
-    if (
-      this.bulletGraphic && this.bulletGraphic.x === this.targetGraphic.x &&
-      this.bulletGraphic.y === this.targetGraphic.y
-    ) {
-      this.#hit(Console);
+  static #moveTarget(Console) {
+    if (this.targetGraphic.y === 12) {
+      this.#miss(Console);
+      return true;
+    } else if (Console.random() % 100 < this.#score) {
+      this.targetGraphic.y++;
+      this.#checkHit(Console);
     }
-  }
-
-  static #hit(Console) {
-    this.#score++;
-    this.#recreateEffectSound(Console, "hitSound");
-    Console.deleteGraphic(this, ["bulletGraphic"]);
-    this.#recreateTarget(Console);
-    this.targetGraphic.x = Console.random() % 5 * 4;
+    return false;
   }
 
   static #miss(Console) {
@@ -104,6 +73,17 @@ export class IndexState {
     }
   }
 
+  static #moveBullet(Console) {
+    if (this.bulletGraphic) {
+      if (this.bulletGraphic.y === 0) {
+        Console.deleteGraphic(this, ["bulletGraphic"]);
+      } else {
+        this.bulletGraphic.y--;
+        this.#checkHit(Console);
+      }
+    }
+  }
+
   static #shotBullet(Console) {
     Console.deleteGraphic(this, ["bulletGraphic"]);
     this.bulletGraphic = Console.createGraphic("bulletGraphic");
@@ -112,6 +92,23 @@ export class IndexState {
     this.bulletGraphic.y = 12;
     this.#recreateEffectSound(Console, "shotSound");
     this.#checkHit(Console);
+  }
+
+  static #checkHit(Console) {
+    if (
+      this.bulletGraphic && this.bulletGraphic.x === this.targetGraphic.x &&
+      this.bulletGraphic.y === this.targetGraphic.y
+    ) {
+      this.#hit(Console);
+    }
+  }
+
+  static #hit(Console) {
+    this.#score++;
+    this.#recreateEffectSound(Console, "hitSound");
+    Console.deleteGraphic(this, ["bulletGraphic"]);
+    this.#recreateTarget(Console);
+    this.targetGraphic.x = Console.random() % 5 * 4;
   }
 
   static #recreateEffectSound(Console, soundName) {
