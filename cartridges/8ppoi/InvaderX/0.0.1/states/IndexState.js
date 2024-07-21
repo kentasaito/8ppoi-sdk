@@ -86,7 +86,6 @@ export class IndexState {
 
   static #shotBullet(Console) {
     if (!this.bulletGraphic) {
-//      Console.deleteGraphic(this, ["bulletGraphic"]);
       this.bulletGraphic = Console.createGraphic("bulletGraphic");
       this.bulletGraphic.paletteName = "bulletPalette";
       this.bulletGraphic.x = this.playerGraphic.x;
