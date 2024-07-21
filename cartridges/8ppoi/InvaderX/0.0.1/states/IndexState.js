@@ -14,14 +14,12 @@ export class IndexState {
   }
 
   static onFrame(Console) {
-    if (this.#moveTarget(Console)) {
-      return;
-    }
     this.#movePlayer(Console);
     this.#moveBullet(Console);
     if (Console.pads[0].b.justPressed) {
       this.#shotBullet(Console);
     }
+    if (this.#moveTarget(Console));
   }
 
   static #reset(Console) {
@@ -48,14 +46,13 @@ export class IndexState {
   }
 
   static #moveTarget(Console) {
-    if (this.targetGraphic.y === 12) {
-      this.#miss(Console);
-      return true;
-    } else if (Console.random() % 100 < this.#score) {
+    if (Console.random() % 100 < this.#score) {
       this.targetGraphic.y++;
       this.#checkHit(Console);
     }
-    return false;
+    if (this.targetGraphic.y === 12) {
+      this.#miss(Console);
+    }
   }
 
   static #miss(Console) {
