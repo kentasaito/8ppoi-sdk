@@ -45,22 +45,6 @@ export class IndexState {
     this.targetGraphic.y = 0;
   }
 
-  static #moveTarget(Console) {
-    if (Console.random() % 100 < this.#score) {
-      this.targetGraphic.y++;
-      this.#checkHit(Console);
-    }
-    if (this.targetGraphic.y === 12) {
-      this.#miss(Console);
-    }
-  }
-
-  static #miss(Console) {
-    this.playerGraphic.cells[0][0] = 1;
-    this.#recreateEffectSound(Console, "missSound");
-    Console.pushState("ResultState", { score: this.#score });
-  }
-
   static #movePlayer(Console) {
     if (Console.pads[0].right.justPressed && this.playerGraphic.x < 16) {
       this.playerGraphic.x += 4;
@@ -92,6 +76,16 @@ export class IndexState {
     }
   }
 
+  static #moveTarget(Console) {
+    if (Console.random() % 100 < this.#score) {
+      this.targetGraphic.y++;
+      this.#checkHit(Console);
+    }
+    if (this.targetGraphic.y === 12) {
+      this.#miss(Console);
+    }
+  }
+
   static #checkHit(Console) {
     if (
       this.bulletGraphic && this.bulletGraphic.x === this.targetGraphic.x &&
@@ -107,6 +101,12 @@ export class IndexState {
     Console.deleteGraphic(this, ["bulletGraphic"]);
     this.#recreateTarget(Console);
     this.targetGraphic.x = Console.random() % 5 * 4;
+  }
+
+  static #miss(Console) {
+    this.playerGraphic.cells[0][0] = 1;
+    this.#recreateEffectSound(Console, "missSound");
+    Console.pushState("ResultState", { score: this.#score });
   }
 
   static #recreateEffectSound(Console, soundName) {
