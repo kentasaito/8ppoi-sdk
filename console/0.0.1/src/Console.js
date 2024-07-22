@@ -1,6 +1,6 @@
 import { uiConfig } from "../uiConfig.js";
 import { inputConfig } from "../inputConfig.js";
-import { UtilityManager } from "./UtilityManager.js";
+import { RandomNumberManager } from "./RandomNumberManager.js";
 import { UiManager } from "./UiManager.js";
 import { InputManager } from "./InputManager.js";
 import { GraphicManager } from "./GraphicManager.js";
@@ -10,9 +10,8 @@ import { StateManager } from "./StateManager.js";
 
 export class Console {
   static setup(cartridge, deps) {
-    UtilityManager.setup();
-    this.randomSeed = UtilityManager.randomSeed;
-    this.random = () => UtilityManager.random();
+    this.createRandomNumber = (seed) => RandomNumberManager.createRandomNumber(seed);
+    this.deleteRandomNumber = (obj, keys) => RandomNumberManager.deleteRandomNumber(obj, keys);
 
     UiManager.setup({
       screen: Object.assign(uiConfig.screen, cartridge.uiConfig.screen),

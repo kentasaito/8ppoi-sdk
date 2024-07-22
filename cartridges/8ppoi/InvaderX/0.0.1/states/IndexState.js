@@ -1,5 +1,6 @@
 export class IndexState {
   static #score;
+  static randomNumber;
   static playerGraphic;
   static bulletGraphic;
   static targetGraphic;
@@ -23,8 +24,9 @@ export class IndexState {
   }
 
   static #reset(Console) {
-    Console.randomSeed = Date.now();
     this.#score = 10;
+    Console.deleteRandomNumber(this, ["randomNumber"]);
+    this.randomNumber = Console.createRandomNumber(Date.now());
     this.#recreatePlayer(Console);
     Console.deleteGraphic(this, ["bulletGraphic"]);
     this.#recreateTarget(Console);
@@ -78,7 +80,7 @@ export class IndexState {
   }
 
   static #moveTarget(Console) {
-    if (Console.random() % 100 < this.#score) {
+    if (this.randomNumber.next() % 100 < this.#score) {
       this.targetGraphic.y++;
       this.#checkHit(Console);
     }
@@ -101,7 +103,7 @@ export class IndexState {
     this.#recreateEffectSound(Console, "hitSound");
     Console.deleteGraphic(this, ["bulletGraphic"]);
     this.#recreateTarget(Console);
-    this.targetGraphic.x = Console.random() % 5 * 4;
+    this.targetGraphic.x = this.randomNumber.next() % 5 * 4;
   }
 
   static #miss(Console) {
