@@ -23,6 +23,7 @@ export class IndexState {
   }
 
   static #reset(Console) {
+    Console.randomSeed = Date.now();
     this.#score = 10;
     this.#recreatePlayer(Console);
     Console.deleteGraphic(this, ["bulletGraphic"]);
