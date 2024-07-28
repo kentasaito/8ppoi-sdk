@@ -68,8 +68,8 @@ export class GraphicManager {
     return layer;
   }
 
-  static createGraphic(graphicName, cells = [[0]]) {
-    const graphic = new Graphic(graphicName, cells);
+  static createGraphic(graphicName) {
+    const graphic = new Graphic(graphicName, [[0]]);
     graphic.graphicId = this.graphics.length;
     this.graphics.push(graphic);
     return graphic;
