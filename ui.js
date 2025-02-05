@@ -11,13 +11,14 @@ document.getElementById("pause").onclick = () => {
   document.getElementById("resume").disabled = false;
 };
 document.getElementById("step").onclick = () => {
-  Console.fps = 0;
+  Console.onFrame();
 };
 document.getElementById("resume").onclick = () => {
-  Console.fps = parseInt(document.getElementById("fps").value);
+  Console.fps = parseFloat(document.getElementById("fps").value);
   document.getElementById("pause").disabled = false;
   document.getElementById("step").disabled = true;
   document.getElementById("resume").disabled = true;
+  Console.onFrame();
 };
 document.getElementById("fullscreen").onclick = () => {
   document.getElementById("screen-container").requestFullscreen();
