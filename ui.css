@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "ScreenFont";
+  src: url("./fonts/brixel-8x8-mono/brixel-8x8-mono.otf");
+}
+#screen-container {
+  transform-origin: 0 0;
+  width: 320px;
+  height: 240px;
+  overflow: hidden;
+}
+#screen {
+  font-family: "ScreenFont";
+  font-size: 8px;
+  line-height: 1;
+  transform-origin: 0 0;
+  background-color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  width: 320px;
+  height: 240px;
+  overflow: hidden;
+}
