@@ -36,3 +36,36 @@ document.onfullscreenchange = () => {
     document.getElementById("screen-container").style.paddingLeft = "0";
   }
 };
+
+alert();
+document.addEventListener("keydown", (e) => {
+  if (e.altKey) {
+    if (e.key === "p") {
+      e.preventDefault();
+      document.getElementById("pause").click();
+    }
+    if (e.key === "s") {
+      e.preventDefault();
+      document.getElementById("step").click();
+    }
+    if (e.key === "r") {
+      e.preventDefault();
+      document.getElementById("resume").click();
+    }
+    if (e.key === "f") {
+      e.preventDefault();
+      document.getElementById("fullscreen").click();
+    }
+    if (e.key === "c") {
+      e.preventDefault();
+      document.getElementById("run-cartridge").click();
+      if (document.fullscreenElement !== null) {
+        document.getElementById("fullscreen").click();
+      }
+    }
+    if (e.key === "e") {
+      e.preventDefault();
+      document.getElementById("fullscreen-editor").click();
+    }
+  }
+});
