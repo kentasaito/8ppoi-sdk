@@ -37,7 +37,6 @@ document.onfullscreenchange = () => {
   }
 };
 
-alert();
 document.addEventListener("keydown", (e) => {
   if (e.altKey) {
     if (e.key === "p") {
