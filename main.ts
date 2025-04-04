@@ -26,13 +26,11 @@ app.use("*", async (c, next) => {
   await next();
 });
 
-app.get("/", (c, next) => {
+app.get("/*", (c, next) => {
   const memberId = c.get("memberId");
   return serveStatic({
     root: `./cartridges/${memberId}/`,
   })(c, next);
 });
-
-app.get("/*", serveStatic({ root: "./static/" }));
 
 Deno.serve(app.fetch);
