@@ -10,11 +10,12 @@ if (await streamExec("git", { args: ["-C", repository.directory, "remote", "get-
   Deno.exit(1);
 }
 
+const git = async (args: string[]) => {
+  if (await streamExec("git", { args: ["-C", repository.directory, ...args] }) !== 0) Deno.exit(1);
+};
+
 console.log(`Publishing ${repository.name}... (${repository.repositoryPath})`);
-if (await streamExec("git", { args: ["-C", repository.directory, "commit", "--allow-empty-message", "-am", '""'] }) !== 0) {
-  Deno.exit(1);
-}
-if (await streamExec("git", { args: ["-C", repository.directory, "push"] }) !== 0) {
-  Deno.exit(1);
-}
+await git(["commit", "--allow-empty-message", "-am", '""']);
+await git(["push"]);
+
 console.log();
