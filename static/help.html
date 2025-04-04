@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>8ppoi SDK</h1>
+    <div>
+      <a href="/">トップに戻る</a>
+      <pre
+      >
+        8ppoi SDKの使い方
+          Webサーバの起動
+            以下のコマンドを実行するとWebサーバが起動します。
+            http://localhost:8000 をWebブラウザで開くと8ppoiコンソールを利用できます。
+              deno task dev
+
+          アップデート
+            以下のコマンドを実行するとSDKとコンソールがアップデートされます。
+              deno task update
+
+          バージョン確認
+            以下のコマンドを実行するとSDKとコンソールのバージョン確認を行います。
+              deno task version
+
+          カートリッジの開発
+            事前準備
+              GitHubへのサインアップとGitHub CLIのインストールが必要です。
+
+              GitHub
+                https://github.com/
+
+              GitHub CLI
+                https://github.com/cli/cli
+
+            以下のコマンドを実行すると新しいカートリッジが作成されます。
+            ./cartridge/{メンバーID}/{カートリッジID}内のファイルを編集してカートリッジを開発してください。
+              deno task cartridge create {カートリッジID}
+
+          プロフィールの公開
+            事前準備
+              8ppoiへのサインアップが必要です。
+              ログインリンクからGitHub OAuth連携を許可してください。
+
+              8ppoi
+                https://8ppoi.deno.dev
+
+            以下のコマンドを実行するとプロフィールが公開されます。
+              deno task member publish
+
+          カートリッジの公開
+            以下のコマンドを実行するとカートリッジが公開されます。
+              deno task cartridge publish {カートリッジID}
+
+          カートリッジの公開終了
+            以下のコマンドを実行するとプロフィールの公開が終了されます。
+              deno task member delete
+
+          カートリッジの公開終了
+            以下のコマンドを実行するとカートリッジの公開が終了されます。
+              deno task cartridge delete {カートリッジID}
+
+          アンインストール
+            8ppoi-sdkをディレクトリごと削除してください。
+      </pre
+      >
+    </div>
+  </body>
+</html>

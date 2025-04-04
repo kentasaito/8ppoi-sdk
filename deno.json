@@ -1,0 +1,13 @@
+{
+  "lock": false,
+  "imports": {
+    "@hono/hono": "jsr:@hono/hono@^4.7.5",
+    "@kenta/stream-exec": "jsr:@kenta/stream-exec@0.0.2",
+    "@std/fs": "jsr:@std/fs@^1.0.15"
+  },
+  "tasks": {
+    "dev": "deno run --allow-net --allow-read --allow-run --allow-write --watch ./main.ts",
+    "version": "deno run --allow-run ./tasks/version.ts",
+    "update": "deno run --allow-run ./tasks/update.ts"
+  }
+}
