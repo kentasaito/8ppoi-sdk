@@ -7,6 +7,7 @@
   },
   "tasks": {
     "dev": "deno run --allow-net --allow-read --allow-run --allow-write --watch ./main.ts",
-    "update": "deno run --allow-run ./tasks/update.ts"
+    "update": "deno run --allow-run ./tasks/update.ts",
+    "publish-profile": "deno run --allow-run ./tasks/publish-profile.ts"
   }
 }
