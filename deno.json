@@ -2,7 +2,7 @@
   "lock": false,
   "imports": {
     "@hono/hono": "jsr:@hono/hono@^4.7.5",
-    "@kenta/stream-exec": "jsr:@kenta/stream-exec@0.0.2",
+    "@kenta/stream-exec": "jsr:@kenta/stream-exec@0.0.3",
     "@std/fs": "jsr:@std/fs@^1.0.15"
   },
   "tasks": {
