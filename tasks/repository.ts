@@ -3,10 +3,10 @@ import { member } from "./member.ts";
 
 const repository = {
   name: "member profile",
-  directory: `./cartridges/${member.id}/`,
-  repositoryPath: "",
+  localPath: `./cartridges/${member.id}/`,
+  remotePath: "",
 };
-if (await streamExec("git", { args: ["-C", repository.directory, "remote", "get-url", "origin"] }, "", (repositoryPath) => repository.repositoryPath = repositoryPath) !== 0) {
+if (await streamExec("git", { args: ["-C", repository.localPath, "remote", "get-url", "origin"] }, "", (repositoryPath) => repository.remotePath = repositoryPath) !== 0) {
   Deno.exit(1);
 }
 export { repository };
